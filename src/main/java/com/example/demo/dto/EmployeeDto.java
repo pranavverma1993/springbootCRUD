@@ -1,14 +1,15 @@
 package com.example.demo.dto;
 
 public class EmployeeDto {
-	private String userName;
+	private String lastName;
 	private String firstName;
 	
-	public String getUserName() {
-		return userName;
+	
+	public String getLastName() {
+		return lastName;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public String getFirstName() {
 		return firstName;

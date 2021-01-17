@@ -58,7 +58,7 @@ public class EmployeeService {
 				EmployeeDto fetchDelegateOutputDto = new EmployeeDto();
 				
 				fetchDelegateOutputDto.setFirstName(String.valueOf(tempObj[0]));
-				fetchDelegateOutputDto.setUserName(String.valueOf(tempObj[1]));
+				fetchDelegateOutputDto.setLastName(String.valueOf(tempObj[1]));
 				
 			
 				employeeDtoList.add(fetchDelegateOutputDto);
