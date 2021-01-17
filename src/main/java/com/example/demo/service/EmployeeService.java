@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,23 +12,26 @@ import com.example.demo.dto.CommonResponseDto;
 import com.example.demo.dto.EmployeeDto;
 import com.example.demo.dto.EmployeeDtoList;
 import com.example.demo.dto.EmployeeInputDto;
+import com.example.demo.dto.FetchEmployeeInputDto;
 import com.example.demo.entity.EmployeeEntity;
 import com.example.demo.repo.EmployeeRepo;
+
 
 @Service
 public class EmployeeService {
 
 	@Autowired
 	EmployeeRepo employeeRepo;
-	public CommonResponseDto fetchlist(EmployeeInputDto employeeInputDto) throws Exception {
+	;
+	public CommonResponseDto savelist(EmployeeInputDto employeeInputDto) throws Exception {
 		
 		CommonResponseDto response = new CommonResponseDto();
 		EmployeeEntity employeeEntity = new EmployeeEntity();
 		
 		try {
-//			employeeEntity.setId(employeeInputDto.getId());
-			employeeEntity.setFirstName(employeeInputDto.getFirstName());
+			employeeEntity.setUserId(employeeInputDto.getUserId());
 			employeeEntity.setLastName(employeeInputDto.getLastName());
+			employeeEntity.setFirstName(employeeInputDto.getFirstName());
 			employeeRepo.save(employeeEntity);
 		}
 		catch (Exception exception) {
@@ -35,6 +41,32 @@ public class EmployeeService {
 	}
 		return response;
 	}
+	
+	
+	//fetch data based on userId
+	public EmployeeDtoList fetchlist(Integer userId) {
+		EmployeeDtoList response = new EmployeeDtoList();
+		List<Object[]> objList = new ArrayList<>();
+		List<EmployeeDto> employeeDtoList = new ArrayList<>();
+		
+		try {
+			objList=employeeRepo.findByRequiredUserId(userId);
+			for (Object[] tempObj : objList) {
+				EmployeeDto fetchDelegateOutputDto = new EmployeeDto();
+				
+				fetchDelegateOutputDto.setFirstName(String.valueOf(tempObj[0]));
+				fetchDelegateOutputDto.setUserName(String.valueOf(tempObj[1]));
+				
+			
+				employeeDtoList.add(fetchDelegateOutputDto);
+			}
+	
+			response.setResponse(employeeDtoList);
+		}
+		catch (Exception exception) {
 
+			}
 
+		return response;
+}
 }

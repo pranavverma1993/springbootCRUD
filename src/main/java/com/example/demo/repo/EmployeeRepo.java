@@ -14,6 +14,6 @@ import com.example.demo.entity.EmployeeEntity;
 
 public interface EmployeeRepo extends JpaRepository<EmployeeEntity, Long> {
 
-	@Query("select m.firstName,m.lastName from EmployeeEntity as m where m.id=:id")
-	List<Object[]> findByRequiredUserId(@Param("id")Integer id);
+	@Query("select m.firstName,m.lastName from EmployeeEntity as m where m.userId=:userId")
+	List<Object[]> findByRequiredUserId(@Param("userId")Integer userId);
 }

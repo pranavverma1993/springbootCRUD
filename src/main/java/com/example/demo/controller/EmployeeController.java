@@ -14,7 +14,9 @@ import com.example.demo.constant.ErrorConstants;
 import com.example.demo.constant.SuccessConstants;
 import com.example.demo.constant.URIConstants;
 import com.example.demo.dto.CommonResponseDto;
+import com.example.demo.dto.EmployeeDtoList;
 import com.example.demo.dto.EmployeeInputDto;
+import com.example.demo.dto.FetchEmployeeInputDto;
 import com.example.demo.service.EmployeeService;
 
 @RestController
@@ -29,7 +31,7 @@ public CommonResponseDto saveEmployeelist( @RequestBody EmployeeInputDto Employe
 	CommonResponseDto response = new CommonResponseDto();
 	
 	try {
-		response = employeeService.fetchlist(EmployeeInputDto);
+		response = employeeService.savelist(EmployeeInputDto);
 		response.setResponseCode(AppConstants.SUCCESS_CODE);
 		response.setResponseMessage(SuccessConstants.SAVE_EMPLOYEE);
 	} catch (Exception e) {
@@ -39,4 +41,29 @@ public CommonResponseDto saveEmployeelist( @RequestBody EmployeeInputDto Employe
 	}
 	return response;
 }
+
+
+
+@RequestMapping(method = RequestMethod.POST, value = URIConstants.FETCH_USER_DATA)
+public EmployeeDtoList getEmployeelist( @RequestBody FetchEmployeeInputDto fetchEmployeeInputDto) {
+	EmployeeDtoList response = new EmployeeDtoList();
+	
+	try {
+		response = employeeService.fetchlist(fetchEmployeeInputDto.getUserId());
+		response.setResponseCode(AppConstants.SUCCESS_CODE);
+		response.setResponseMessage(SuccessConstants.FETCH_EMPLOYEE);
+	} catch (Exception e) {
+		
+		response.setResponseCode(AppConstants.FAILURE_CODE);
+		response.setResponseMessage(ErrorConstants.FETCH_EMPLOYEE_ERROR);
+	}
+	return response;
+}
+
+
+
+
+
+
+
 }

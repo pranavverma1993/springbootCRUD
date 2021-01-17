@@ -2,6 +2,8 @@ package com.example.demo.dto;
 
 public class EmployeeDto {
 	private String userName;
+	private String firstName;
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -15,6 +17,6 @@ public class EmployeeDto {
 		this.firstName = firstName;
 	}
 	
-	private String firstName;
+	
 	
 }

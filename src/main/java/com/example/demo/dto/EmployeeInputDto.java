@@ -4,7 +4,13 @@ public class EmployeeInputDto {
 	
 	private String firstName;
 	 private String lastName;
-	
+	private Integer userId;
+	public Integer getUserId() {
+		return userId;
+	}
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
