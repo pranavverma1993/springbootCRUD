@@ -17,6 +17,7 @@ import com.example.demo.dto.CommonResponseDto;
 import com.example.demo.dto.EmployeeDtoList;
 import com.example.demo.dto.EmployeeInputDto;
 import com.example.demo.dto.FetchEmployeeInputDto;
+import com.example.demo.dto.UpdateInputDto;
 import com.example.demo.service.EmployeeService;
 
 @RestController
@@ -62,8 +63,36 @@ public EmployeeDtoList getEmployeelist( @RequestBody FetchEmployeeInputDto fetch
 
 
 
+@RequestMapping(method = RequestMethod.POST, value = URIConstants.UPDATE_USER_DATA)
+public CommonResponseDto updateEmployeelist( @RequestBody UpdateInputDto updateInputDto) {
+	CommonResponseDto response = new CommonResponseDto();
+	
+	try {
+		response = employeeService.updateEmployeelist(updateInputDto);
+		response.setResponseCode(AppConstants.SUCCESS_CODE);
+		response.setResponseMessage(SuccessConstants.UPDATE_EMPLOYEE);
+	} catch (Exception e) {
+		
+		response.setResponseCode(AppConstants.FAILURE_CODE);
+		response.setResponseMessage(ErrorConstants.UPDATE_EMPLOYEE_ERROR);
+	}
+	return response;
+}
 
-
-
+@RequestMapping(method = RequestMethod.POST, value = URIConstants.DELETE_USER_DATA)
+public CommonResponseDto deleteEmployeelist( @RequestBody FetchEmployeeInputDto deleteInputDto) {
+	CommonResponseDto response = new CommonResponseDto();
+	
+	try {
+		response = employeeService.deleteEmployeelist(deleteInputDto);
+		response.setResponseCode(AppConstants.SUCCESS_CODE);
+		response.setResponseMessage(SuccessConstants.DELETE_EMPLOYEE);
+	} catch (Exception e) {
+		
+		response.setResponseCode(AppConstants.FAILURE_CODE);
+		response.setResponseMessage(ErrorConstants.DELETE_EMPLOYEE_ERROR);
+	}
+	return response;
+}
 
 }
