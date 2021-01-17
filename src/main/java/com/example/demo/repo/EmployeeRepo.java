@@ -20,8 +20,8 @@ public interface EmployeeRepo extends JpaRepository<EmployeeEntity, Long> {
 
 
 	@Modifying
-	@Query("update EmployeeEntity m set m.firstName =:firstName where m.userId =:userId" )
-	int updateEmployeeList(@Param("firstName") String firstName,@Param("userId")Integer userId);
+	@Query("update EmployeeEntity m set m.firstName =:firstName , m.lastName =:lastName where m.userId =:userId" )
+	int updateEmployeeList(@Param("firstName") String firstName,@Param("lastName") String lastName,@Param("userId")Integer userId);
 	
 	
 	@Modifying

@@ -82,8 +82,8 @@ public class EmployeeService {
 		try {
 			employeeEntity.setUserId(updateInputDto.getUserId());
 			employeeEntity.setFirstName(updateInputDto.getFirstName());
-			
-			employeeRepo.updateEmployeeList(employeeEntity.getFirstName(),employeeEntity.getUserId());
+			employeeEntity.setLastName(updateInputDto.getLastName());
+			employeeRepo.updateEmployeeList(employeeEntity.getFirstName(),employeeEntity.getLastName(),employeeEntity.getUserId());
 		}
 		catch (Exception exception) {
 			response.setResponseCode(AppConstants.FAILURE_CODE);
